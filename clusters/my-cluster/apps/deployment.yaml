@@ -6,16 +6,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: nginx-flux-demo
   replicas: 2
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx-flux-demo
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
+      - name: nginx-flux-demo
+        image: nginx:1.28
         ports:
         - containerPort: 80
         
