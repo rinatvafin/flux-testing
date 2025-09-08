@@ -9,5 +9,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80        # порт, по которому будут обращаться клиенты
-      targetPort: 80  # порт контейнера в pod'ах
+      targetPort: 8080  # порт контейнера в pod'ах
   type: ClusterIP
