@@ -26,5 +26,5 @@ spec:
       ingress:
         enabled: true
         hosts:
-          - grafana.victoria.local
+          - grafana.demo
         ingressClassName: nginx
