@@ -35,8 +35,8 @@ spec:
           nginx.ingress.kubernetes.io/rewrite-target: /
     vmcluster:
       enabled: true
-    vmselect: 
-        enable: true
+      vmselect: 
+        enabled: true
     vmsingle:
       enabled: false
     vmagent:
