@@ -1,4 +1,4 @@
-resources:
+#resources:
 #  - ./helm-repo.yaml
 #  - ./helm-release.yaml
-  - ./namespace.yaml
+#  - ./namespace.yaml
