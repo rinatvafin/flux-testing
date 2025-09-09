@@ -4,7 +4,7 @@ metadata:
   name: victoria-metrics-stack
   namespace: monitoring
 spec:
-  releaseName: victoria-metrics-stack
+  releaseName: vm-stack
   chart:
     spec:
       chart: victoria-metrics-k8s-stack
