@@ -19,6 +19,10 @@ spec:
     standalone:
       enabled: true        # только один pod VictoriaMetrics
       retentionPeriod: 30d
+    vmsingle:
+      service:
+        type: ClusterIP
+        port: 8428
     grafana:
       enabled: true
       adminUser: admin
