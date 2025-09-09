@@ -44,11 +44,11 @@ spec:
       cluster:
         enabled: true
         replicas: 2
-    # Настройки ресурсов (пример)
-    resources:
-      requests:
-        cpu: 500m
-        memory: 500m
-      limits:
-        cpu: 1
-        memory: 1Gi
+    # # Настройки ресурсов (пример)
+    # resources:
+    #   requests:
+    #     cpu: 500m
+    #     memory: 500m
+    #   limits:
+    #     cpu: 1
+    #     memory: 1Gi
