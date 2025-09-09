@@ -5,6 +5,7 @@ metadata:
   namespace: victoria   # отдельный namespace
 spec:
   interval: 1m
+  targetNamespace: victoria
   chart:
     spec:
       chart: victoria-metrics-k8s-stack
