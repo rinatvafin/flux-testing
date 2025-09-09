@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app2-nginx
+  namespace: default
   labels:
     app: app2-nginx
 spec:
