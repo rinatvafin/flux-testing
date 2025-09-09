@@ -1,54 +1,29 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: victoria-metrics-stack
-  namespace: monitoring
+  name: victoria-metrics
+  namespace: victoria   # отдельный namespace
 spec:
-  releaseName: vm-stack
   chart:
     spec:
       chart: victoria-metrics-k8s-stack
-      version: "0.59.4"  # укажи нужную версию чарта
       sourceRef:
         kind: HelmRepository
         name: victoria-metrics
         namespace: flux-system
-  interval: 1m
+      version: 0.59.4
+  releaseName: vm-stack
   values:
-    # Включаем Grafana
+    fullnameOverride: vm-stack
+    standalone:
+      enabled: true        # только один pod VictoriaMetrics
+      retentionPeriod: 30d
     grafana:
       enabled: true
       adminUser: admin
-      adminPassword: "changeme"  # заменить на секрет через k8s Secret в prod
-      service:
-        type: ClusterIP
+      adminPassword: changeme
       ingress:
         enabled: true
-        ingressClassName: nginx
         hosts:
-          - grafana.demo
-        path: /
-        pathType: Prefix
-        annotations:
-          nginx.ingress.kubernetes.io/rewrite-target: /
-    # Кластерное развертывание VictoriaMetrics
-    vmstorage:
-      cluster:
-        enabled: true
-        replicas: 2
-    vminsert:
-      cluster:
-        enabled: true
-        replicas: 2
-    vmselect:
-      cluster:
-        enabled: true
-        replicas: 2
-    # # Настройки ресурсов (пример)
-    # resources:
-    #   requests:
-    #     cpu: 500m
-    #     memory: 500m
-    #   limits:
-    #     cpu: 1
-    #     memory: 1Gi
+          - grafana.victoria.local
+        ingressClassName: nginx
