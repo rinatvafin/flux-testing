@@ -19,6 +19,8 @@ spec:
     standalone:
       enabled: true        # только один pod VictoriaMetrics
       retentionPeriod: 30d
+    operator:
+      enabled: false
     vmsingle:
       service:
         type: ClusterIP
