@@ -20,26 +20,24 @@ spec:
   upgrade:
     remediation:
       retries: 3
-  values:
-    # Minimal example values, adjust as needed
-    grafana:
-      enabled: true
-      ingress:
-        enabled: true
-        ingressClassName: nginx
-        hosts:
-          - grafana.demo
-        path: /
-        pathType: Prefix
-        annotations:
-          nginx.ingress.kubernetes.io/rewrite-target: /
-    vmcluster:
-      enabled: true
-      vmselect: 
-        enabled: true
-    vmsingle:
-      enabled: false
-    vmagent:
-      enabled: true
-    alertmanager:
-      enabled: true
+grafana:
+  enabled: true
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - grafana.demo
+    path: /
+    pathType: Prefix
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+vmcluster:
+  enabled: true
+  vmselect:
+    enabled: true
+vmsingle:
+  enabled: false
+vmagent:
+  enabled: true
+alertmanager:
+  enabled: true
