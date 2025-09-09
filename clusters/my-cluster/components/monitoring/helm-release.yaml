@@ -1,0 +1,43 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: victoria-metrics
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: victoria-metrics-k8s-stack
+      version: "0.24.8"
+      sourceRef:
+        kind: HelmRepository
+        name: victoria-metrics
+        namespace: flux-system
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    # Minimal example values, adjust as needed
+    grafana:
+      enabled: true
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hosts:
+          - grafana.demo
+        path: /
+        pathType: Prefix
+        annotations:
+          nginx.ingress.kubernetes.io/rewrite-target: /
+    vmcluster:
+      enabled: true
+    vmsingle:
+      enabled: false
+    vmagent:
+      enabled: true
+    alertmanager:
+      enabled: true

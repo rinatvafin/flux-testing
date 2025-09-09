@@ -4,3 +4,4 @@ resources:
   - ./apps/nginx-flux-demo
   - ./apps/app2
   - ./apps/cert-manager
+  - ./components/monitoring
