@@ -1,0 +1,42 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: harbor
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: harbor
+      sourceRef:
+        kind: HelmRepository
+        name: harbor
+        namespace: flux-system
+      version: "1.17.2"
+  values:
+    expose:
+      type: ingress
+      tls:
+        enabled: false          # отключаем TLS → HTTP
+      ingress:
+        hosts:
+          core: harbor.demo
+    externalURL: http://harbor.demo
+    harborAdminPassword: "supersecretpassword"
+    persistence:
+      enabled: true
+      persistentVolumeClaim:
+        registry:
+          size: 5Gi
+          storageClass: longhorn
+        jobservice:
+          size: 1Gi
+          storageClass: longhorn
+        database:
+          size: 1Gi
+          storageClass: longhorn
+        redis:
+          size: 1Gi
+          storageClass: longhorn
+        trivy:
+          size: 2Gi
+          storageClass: longhorn

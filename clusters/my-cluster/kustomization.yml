@@ -5,3 +5,4 @@ resources:
   - ./apps/app2
   - ./apps/cert-manager
   - ./components/monitoring
+  - ./apps/harbor
