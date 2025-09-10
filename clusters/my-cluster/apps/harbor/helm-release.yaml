@@ -42,9 +42,3 @@ spec:
         trivy:
           size: 2Gi
           storageClass: longhorn
-    harborUsers:
-    - name: developer
-      password: "developer"
-      email: "dev@example.com"
-      realname: "Dev User"
-      sysadmin: false
