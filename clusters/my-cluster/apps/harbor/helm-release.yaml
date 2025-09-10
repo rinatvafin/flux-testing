@@ -19,7 +19,7 @@ spec:
       tls:
         enabled: false
       ingress:
-        className: ingress
+        className: nginx
         hosts:
           core: harbor.demo
     externalURL: http://harbor.demo
