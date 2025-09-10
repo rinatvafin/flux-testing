@@ -1,37 +1,52 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: victoria-metrics2
-  namespace: victoria   # отдельный namespace
+  name: victoria-metrics
+  namespace: monitoring
 spec:
   interval: 1m
-  targetNamespace: victoria
   chart:
     spec:
       chart: victoria-metrics-k8s-stack
+      version: "*"
       sourceRef:
         kind: HelmRepository
         name: victoria-metrics
         namespace: flux-system
-      version: 0.59.4
-  releaseName: vm-stack
   values:
-    fullnameOverride: vm-stack
-    standalone:
-      enabled: true        # только один pod VictoriaMetrics
-      retentionPeriod: 30d
-    operator:
-      enabled: false
     vmsingle:
-      service:
-        type: ClusterIP
-        port: 8428
+      enabled: true
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: 200m
+          memory: 512Mi
+      persistentVolume:
+        enabled: true
+        size: 1Gi   # здесь 1Гб
+        storageClassName: longhorn
+
+    vmcluster:
+      enabled: false
+
     grafana:
       enabled: true
-      adminUser: admin
-      adminPassword: changeme
       ingress:
         enabled: true
+        ingressClassName: nginx
         hosts:
           - grafana.demo
-        ingressClassName: nginx
+        tls: []
+      adminUser: admin
+      adminPassword: admin
+      persistence:
+        enabled: true
+        size: 1Gi   # тоже 1Гб
+        storageClassName: longhorn
+
+    vmagent:
+      replicaCount: 1
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
