@@ -4,6 +4,7 @@ metadata:
   name: harbor
   namespace: default
 spec:
+  interval: '1m0s'
   chart:
     spec:
       chart: harbor
