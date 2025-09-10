@@ -51,3 +51,8 @@ spec:
         requests:
           cpu: 100m
           memory: 256Mi
+          
+    vmoperator:
+      enabled: true
+      admissionWebhooks:
+        enabled: false
