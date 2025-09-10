@@ -21,7 +21,6 @@ spec:
       ingress:
         hosts:
           core: harbor.demo
-        ingressClassName: nginx 
     externalURL: http://harbor.demo
     harborAdminPassword: "supersecretpassword"
     persistence:
