@@ -6,3 +6,4 @@ resources:
   - ./apps/cert-manager
   - ./components/monitoring
   - ./apps/harbor
+  - ./secrets
